@@ -12,7 +12,7 @@ script in years.
 How to Use:
 - Copy cdirip and dcburn to a directory where your $PATH can read it.
 - Enter the directory where the CDI is.
-- Type in dcburn (nameofgame).cdi
+- Type in burndc (nameofgame).cdi
 - Put in CD
 - Win :)
 
