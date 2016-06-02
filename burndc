@@ -63,7 +63,7 @@ then
 fi
 
 eject
-rm *.toc
+rm tdisc.cue
 echo "${white}:: ${magenta}Burn Complete ${white}::"
 echo "${reset}"
 
