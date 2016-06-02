@@ -1,0 +1,19 @@
+BurnDC V1.0 by Dean Thomson (https://code.fsociety.info/burndc)
+2016 MIT License.
+
+Dependencies:
+cdrecord
+
+I will add options later on to change the dev id of the scsi burner.
+Later on I'll also add a parameter change burn speed.  But for the
+time being this is the first working Linux Dreamcast CDI burning
+script in years.
+
+How to Use:
+- Copy cdirip and dcburn to a directory where your $PATH can read it.
+- Enter the directory where the CDI is.
+- Type in dcburn (nameofgame).cdi
+- Put in CD
+- Win :)
+
+Enjoy.
