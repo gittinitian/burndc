@@ -34,7 +34,7 @@ fi
 
 echo "${white}:: ${magenta}Extracting CDI image ${white}::"
 echo
-cdirip "${CDIIMG}" -full
+./cdirip "${CDIIMG}" -full
 echo
 echo "${white}:: ${green}Insert Blank CD and Press [Enter] $white::"
 read -p ""
@@ -47,23 +47,29 @@ then
         echo
         echo "${white}:: ${magenta}Burning Audio Tracks (CDDA/Boot) ${white}::"
         WAV=$(ls -F --format=horizontal taudio*.wav)
-        cdrecord dev=/dev/sr0 -speed=16 -dao -v -multi -audio $WAV
+        cdrecord dev=/dev/sr0 -speed=4 -dao -v -multi -audio $WAV
         rm $WAV
 fi
 
 # burn data track
 clear
-if ls tdata*.iso 1> /dev/null 2>&1
+if ls tdisc.cue 1> /dev/null 2>&1
 then
         echo
         echo "${white}:: ${magenta}Burning Data Tracks ${white}::"
         ISO=$(ls -F --format=horizontal tdata*.iso)
-        cdrecord dev=/dev/sr0 -speed=16 -tao -v -xa $ISO
+        cdrecord dev=/dev/sr0 -speed=4 -tao -v -xa $ISO
         rm $ISO
+	rm tdisc.cue
+elif [ "$(ls -bls -b tdata*.iso | wc -l)" -eq 2 ]
+then
+        cdrecord dev=/dev/sr0 -multi tdata01.iso speed=4
+        cdrecord dev=/dev/sr0 -multi tdata02.iso speed=4
+	eject
+	rm tdata01.iso
+	rm tdata02.iso
 fi
 
-eject
-rm tdisc.cue
 echo "${white}:: ${magenta}Burn Complete ${white}::"
 echo "${reset}"
 
