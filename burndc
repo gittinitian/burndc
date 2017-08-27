@@ -48,6 +48,7 @@ then
         echo "${white}:: ${magenta}Burning Audio Tracks (CDDA/Boot) ${white}::"
         WAV=$(ls -F --format=horizontal taudio*.wav)
         cdrecord dev=/dev/sr0 -speed=4 -dao -v -multi -audio $WAV
+	eject
         rm $WAV
 fi
 
@@ -65,10 +66,11 @@ elif [ "$(ls -bls -b tdata*.iso | wc -l)" -eq 2 ]
 then
         cdrecord dev=/dev/sr0 -multi tdata01.iso speed=4
         cdrecord dev=/dev/sr0 -multi tdata02.iso speed=4
-	eject
 	rm tdata01.iso
 	rm tdata02.iso
 fi
+
+eject
 
 echo "${white}:: ${magenta}Burn Complete ${white}::"
 echo "${reset}"
