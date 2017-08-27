@@ -48,7 +48,6 @@ then
         echo "${white}:: ${magenta}Burning Audio Tracks (CDDA/Boot) ${white}::"
         WAV=$(ls -F --format=horizontal taudio*.wav)
         cdrecord dev=/dev/sr0 -speed=4 -dao -v -multi -audio $WAV
-	eject
         rm $WAV
 fi
 
